@@ -1,4 +1,4 @@
-```bash
+```javascript
 const axios = require("axios");
 const WebSocket = require("ws");
 const EventEmitter = require("events");

@@ -47,6 +47,7 @@ class DiscordBot extends EventEmitter {
                 this.ws.close();
             }
         }
+        
     }
 
     async getBotIdFromToken() {
@@ -112,8 +113,23 @@ class DiscordBot extends EventEmitter {
             console.error('Mesajları silme hatası:', error.response.data);
         }
     }
-    async sendMessage(channelId, msg) {
+    async sendMessage(channelId, content = null, embed = null) {
         try {
+            const payload = {};
+
+        if (content) {
+            payload.content = content;
+        }
+
+        if (embed) {
+            payload.embed = embed;
+        }
+
+        if (!content && !embed)
+        {
+            console.error("Mesaj içeriği veya mesaj embed ikisinden birini belirtmek zorundasınız.");
+        }
+    
             const response = await axios({
                 method: 'post',
                 url: `https://discord.com/api/v9/channels/${channelId}/messages`,
@@ -121,16 +137,15 @@ class DiscordBot extends EventEmitter {
                     'Authorization': `Bot ${this.token}`,
                     'Content-Type': 'application/json'
                 },
-                data: {
-                    content: msg
-                }
+                data: payload
             });
-
+    
             return response.data;
         } catch (error) {
             console.error('Mesaj gönderme hatası:', error.response.data);
         }
     }
+    
     async deleteMessage(channelId, messageId) {
         try {
             const response = await axios({

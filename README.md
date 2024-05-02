@@ -1,8 +1,9 @@
 Benim için gerçekten önemli bir proje. Aslında discord botu geliştirmek için discord.js, discord.py veya Java JDA gibi bir çok programlama dilinde bu şekilde kütüphaneler geliştirildi. Ancak kendimi denemek amaçlı Discord API'sinide az çok öğrenmek için böyle bir proje geliştiriyorum. Bu projeyi çok sık geliştirmeyi ve çok fazla özellik eklemeyi düşünmüyorum daha temel projeler için kullanılabilir bir proje haline getireceğim.
 
 
-test.js
 ```javascript
+//test.js
+
 const DiscordBot = require("./discord_bot");
 
 const bot = new DiscordBot();
